@@ -3,15 +3,18 @@ import React, { Component } from 'react';
 class ProductItem extends Component {
 
   render() {
+    let {product, index} = this.props;
+    let statusName = product.status ? 'Còn hàng' : 'Hết Hàng';
+    let statusClass = product.status ? 'warning' : 'default';
     return (
         <tr>
-            <td>1</td>
-            <td>SS</td>
-            <td>SS</td>
-            <td>123321</td>
+            <td>{index+1}</td>
+            <td>{product.id}</td>
+            <td>{product.name}</td>
+            <td>{product.price}</td>
             <td>
-                <span className="badge badge-info">
-                còn hàng
+                <span className={`badge badge-${statusClass}`}>
+                  {statusName}
                 </span>
             </td>
             <td>

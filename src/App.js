@@ -1,20 +1,35 @@
 import React, { Component } from 'react';
 import Menu from './components/Menu/Menu';
-import ProductList from './components/ProductList/ProductList';
+import routes from './routes';
+import { Switch, Route, BrowserRouter as Router } from 'react-router-dom';
 
 class App extends Component {
 
+  showContentMenus = (routes) => {
+    let result = null;
+    if(routes.length > 0){
+      result = routes.map((route, index) => {
+        return (
+          <Route 
+            key={index} 
+            path={route.path} 
+            exact={route.exact}
+            component={route.main}
+          />
+        )
+      });
+    }
+    return <Switch>{result}</Switch>
+  }
+
   render() {
     return (
-      <div>
-        <Menu/>
-
-        <div className="container-fluid">
-          <h1 className="display-4 my-4 text-info">List of products</h1>
-          <button type="button" className="btn btn-primary mb-1">Thêm sản phẩm</button>
-          <ProductList/>
+      <Router>
+        <div>
+          <Menu/>
+          { this.showContentMenus(routes) }
         </div>
-      </div>
+      </Router>
     );
   }
 }
