@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProductList from './../../components/ProductList/ProductList';
 import ProductItem from './../../components/ProductItem/ProductItem';
+import { connect } from 'react-redux'
 
 class ProductListPage extends Component {
 
@@ -21,7 +22,7 @@ class ProductListPage extends Component {
   }
 
   render() {
-    let products = [];
+    let {products} = this.props;
     return (
       <div className="container-fluid">
           <h1 className="display-4 my-4 text-info">List of products</h1>
@@ -34,5 +35,11 @@ class ProductListPage extends Component {
   }
 }
 
-export default ProductListPage;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    products: state.products
+  }
+}
+
+export default connect(mapStateToProps, null)(ProductListPage);
 
