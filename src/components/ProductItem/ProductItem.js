@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 
 class ProductItem extends Component {
 
+  onDelete = (id) => {
+    if(confirm('Bạn có chắc chắn muốn xóa?')){ //eslint-disable-line
+      this.props.onDelete(id);
+    }
+  }
+
   render() {
     let {product, index} = this.props;
     let statusName = product.status ? 'Còn hàng' : 'Hết Hàng';
@@ -19,7 +25,7 @@ class ProductItem extends Component {
             </td>
             <td>
                 <button type="button" className="btn btn-success">Sửa</button>
-                <button type="button" className="btn btn-danger">Xóa</button>
+                <button type="button" className="btn btn-danger" onClick={() => this.onDelete(product.id)}>Xóa</button>
             </td>
         </tr>
     );
