@@ -17,7 +17,7 @@ class ProductListPage extends Component {
       result = products.map((product, index) => {
         return (
           <ProductItem
-           onDelete={this.onDelete}
+            onDelete={this.onDelete}
             key={index}
             product={product}
             index={index}

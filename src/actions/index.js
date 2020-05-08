@@ -17,9 +17,9 @@ export const actFetchProduct = (products) => {
 }
 
 export const actDeleteProductRequest = (id) => {
-    return (dispath) => {
+    return (dispatch) => {
         return callApi( `products/${id}`, 'DELETE', null).then(res => {
-            dispath(actDeleteProduct(res.id));
+            dispatch(actDeleteProduct(res.id));
         })
     }
 }
@@ -31,3 +31,17 @@ export const actDeleteProduct = (id) => {
     }
 }
 
+export const actAddProductRequest = (product) => {
+    return (dispatch) => {
+        return callApi('products', 'POST', product).then((res) => {
+            dispatch(actAddProduct(res.data));
+        })
+    }
+}
+
+export const actAddProduct = (products) => {
+    return {
+        type: Types.ADD_PRODUCT,
+        products
+    }
+}
